@@ -4,8 +4,7 @@
         <meta charset="utf-8">
         <title>Word Guess Game</title>
 
-        <!-- Link external Javascript -->
-        <script src="./assets/javascript/game.js"></script>
+        
 
         <!-- Reset CSS File -->
         <link rel="stylesheet" href="./assets/css/reset.css" type="text/css">
@@ -17,16 +16,19 @@
 
     <body>
         <section>
-            <p>Press any key to get started!</p>
+            <p><span id="messageDisplayText">Press any key to get started!</span></p>
 
-            <p>Wins: <span id="winsText"></span></p>
+            <p>Wins: <span id="winsText">0</span></p>
             
-            <p>Current Word: <span id="currentWord"></span></p>
-            <p>Number of Guesses Remaining: <span id="guessesRemaining"></span></p>
+            <p>Current Word: <span id="currentWord">______</span></p>
+            <p>Number of Guesses Remaining: <span id="guessesRemaining">0</span></p>
 
-            <p>Letters Already Guessed: <span id="lettersGuessed"></span></p>
+            <p>Letters Already Guessed: <span id="lettersGuessed">0</span></p>
         </section>
 
+
+        <!-- Link external Javascript -->
+        <script src="./assets/javascript/game.js"></script>
     </body>
 
 </html>
