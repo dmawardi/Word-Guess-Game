@@ -9,9 +9,6 @@
 // Initialize word selection array
 var words = ['hello', 'goodbye', 'test', 'another word'];
 
-// Initialize guess chances
-var guessChances = 12;
-
 // Declare empty string
 var displayString = "";
 
@@ -21,6 +18,70 @@ var guessWord;
 
 
 // Function List
+// Takes input character key and determines if it's successful or not
+// Also, checks if 
+function takeCharacterGuess(pressedKey) {
+
+    console.log('Key pressed: ' + pressedKey);
+
+    // If it's determined the key has already been pressed and added to the list, tell user to repeat; else continue
+    if (lettersAlreadyGuessed.includes(pressedKey)) {
+        console.log('Sorry, you have already entered that!');
+
+    } else {
+
+        // Update the char guesses display for user
+        lettersAlreadyGuessed.push(pressedKey);
+        console.log('lettersAlreadyGuessed: ' + lettersAlreadyGuessed);
+        document.getElementById('lettersGuessed').innerHTML = lettersAlreadyGuessed;
+
+
+
+        // Search guess word for user pressed letter and output
+        var foundIndexes = wordCharSearcher(guessWord, pressedKey);
+
+        console.log('Result of wordCharSearcher: ' + foundIndexes);
+
+
+        // If there were results found and they are not within the currently revealed
+        if (foundIndexes.length > 0) {
+            console.log('You have found ' + foundIndexes.length + ' letter/s in the word!');
+
+            // Reveal found letters based off typed list to user
+            var displayedWord = revealFoundLetters(guessWord, lettersAlreadyGuessed);
+            console.log(displayedWord);
+            document.getElementById('currentWord').innerHTML = displayedWord;
+
+
+            // Add code for checking if all letters are found for a win
+            if (guessWord === displayedWord) {
+                console.log('Congratulations! You uncovered the word! 1 point for you!')
+                wins++;
+                document.getElementById('winsText').innerHTML = wins;
+
+                // Reset Game
+                resetGame();
+            }
+
+
+        } else {
+            console.log('Sorry. Try again!');
+
+            // Reduce guess chances and print to document
+            guessChances--;
+            document.getElementById('guessesRemaining').innerHTML = guessChances;
+
+            // Add code to check if guesses remaining are at 0
+            if (guessChances === 0) {
+                console.log('Guesses are at 0! You have lost!');
+                document.getElementById('messageDisplayText').innerHTML = 'Resetting';
+
+                // Reset Game
+                resetGame();
+            }
+        }
+    }
+}
 
 // Function randomPicker: Selects random word from array
 // returns string
@@ -71,7 +132,7 @@ function revealFoundLetters(guessword, revealedLetters) {
     return displayString;
 }
 
-// Resets the game without removing wins
+// Resets the game without removing wins: Resets all variables and user text
 function resetGame() {
     // Reset guesses & display
     guessChances = 5;
@@ -179,5 +240,8 @@ document.onkeyup = function wordGuessGame() {
                 }
             }
         }
+    }
+
+    
     }
 }
