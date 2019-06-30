@@ -20,13 +20,9 @@ var wins = 0;
 
 
 // Function List
-// Function Definitions
-// wordCharSearcher(word, char)
-// Function that searches input word for the input character
-
 
 // Function randomPicker: Selects random word from array
-// returns string word
+// returns string
 function randomPicker(wordArray) {
     // Select random word from wordArray using Math package to random pick number between minimum and array length (maximum)
     var word = wordArray[Math.floor(Math.random() * wordArray.length)];
@@ -52,15 +48,6 @@ function wordCharSearcher(word, char) {
     }
     // Return array of indices
     return listOfFoundIndices;
-}
-
-// Synchronizes results of current search with all previous search results
-function foundListSync(currentlyRevealedIndex, listOfFoundIndices) {
-    for (var i = 0; i > listOfFoundIndices.length; i++) {
-        // Assign true to the boolean positions found in the listOfFoundIndices list
-        currentlyRevealedIndex[listOfFoundIndices[i]] = true;
-    }
-    return currentlyRevealedIndex;
 }
 
 // Function that takes guessWord and list of unique already typed letters and forms string to present to user
@@ -143,17 +130,17 @@ document.onkeyup = function wordGuessGame() {
             if (foundIndexes.length > 0) {
                 console.log('You have found ' + foundIndexes.length + ' letter/s in the word!');
 
-                // Add code to reveal found letters based off found
-                // 
-                console.log(revealFoundLetters(guessWord, lettersAlreadyGuessed));
-                document.getElementById('currentWord').innerHTML = revealFoundLetters(guessWord, lettersAlreadyGuessed);
+                // Reveal found letters based off typed list to user
+                var displayedWord = revealFoundLetters(guessWord, lettersAlreadyGuessed);
+                console.log(displayedWord);
+                document.getElementById('currentWord').innerHTML = displayedWord;
 
 
                 // Add code for checking if all letters are found for a win
-                if (revealedIndices != false) {
+                if (guessWord === displayedWord) {
                     console.log('Congratulations! You uncovered the word! 1 point for you!')
-                    win++;
-                    document.getElementById('winsText').innerHTML = win++;
+                    wins++;
+                    document.getElementById('winsText').innerHTML = wins;
                 }
 
 
@@ -173,41 +160,3 @@ document.onkeyup = function wordGuessGame() {
     }
 }
 
-// function alreadyRevealed(revealedBooleanArray, foundIndexes) {
-//     for (var i = 0; i < foundIndexes.length; i++) {
-//         if (revealedBooleanArray[foundIndexes[i]] === true) {
-//             console.log('already Revealed');
-//             return true;
-//             // Else if you are on the final letter and a true has not been found
-//         } else if (i === foundIndexes.length - 1) {
-//             console.log('New letter Revealed');
-//             return false;
-//         }
-//     }
-
-  // Make function to take found indexes and cross check with currently revealed
-            // function alreadyRevealed(revealedBooleanArray, foundIndexes) {
-            //     for (var i = 0; i < foundIndexes.length; i++) {
-            //         if (revealedBooleanArray[foundIndexes[i]] === true) {
-            //             console.log('already Revealed');
-            //             return true;
-            //             // Else if you are on the final letter and a true has not been found
-            //         } else if (i === foundIndexes.length - 1) {
-            //             console.log('New letter Revealed');
-            //             return false;
-            //         }
-            //     }
-
-            // }
-
-             // // If the indexes found to match with the letter have NOT already been revealed
-            // if (alreadyRevealed(revealedIndices, foundIndexes) === false) {
-
-            //     // Synchronize the revealed indices to include recently found and update list
-            //     foundListSync(revealedIndices, foundIndexes);
-            //     console.log('revealedIndices: ' + revealedIndices);
-
-            // } else {
-            //     console.log('Not found to be already revealed');
-            // }
-            // console.log(lettersAlreadyGuessed.includes(event.key.toLowerCase()));
