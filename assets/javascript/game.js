@@ -16,6 +16,7 @@ var guessChances = 12;
 var displayString = "";
 
 var wins = 0;
+var guessWord;
 
 
 
@@ -58,8 +59,10 @@ function revealFoundLetters(guessword, revealedLetters) {
     // Iterates through boolean array (revealedLetters) 
     for (var i = 0; i < guessword.length; i++) {
 
+        // Append guessword letter to display string if the letter is included
         if (revealedLetters.includes(guessword[i])) {
             displayString = displayString + guessword[i];
+            // else, add an underscore
         } else {
             displayString = displayString + '_';
         }
@@ -68,31 +71,43 @@ function revealFoundLetters(guessword, revealedLetters) {
     return displayString;
 }
 
-// Reset the game and guesses to prepare to start the game. Display to player guesses
-console.log('Setting guesses to 12');
-document.getElementById('guessesRemaining').innerHTML = guessChances.toString();
+// Resets the game without removing wins
+function resetGame() {
+    // Reset guesses & display
+    guessChances = 5;
+    document.getElementById('guessesRemaining').innerHTML = guessChances;
+    console.log('Setting guesses to 5');
 
+    // Resets word and letters guessed and displays to users
+    guessWord = randomPicker(words);
+    lettersAlreadyGuessed = [];
+    document.getElementById('lettersGuessed').innerHTML = lettersAlreadyGuessed;
+
+    // reveal letters as underscores
+    document.getElementById('currentWord').innerHTML = revealFoundLetters(guessWord, lettersAlreadyGuessed);
+
+}
+
+// END OF FUNCTION LIST
+// 
 
 // Game
 // Player touches a key to start the game
 document.onkeyup = function wordGuessGame() {
     var lettersAlreadyGuessed = [];
-    var revealedIndices = [];
-
 
     // Display to user that the game has begun
     document.getElementById('messageDisplayText').innerHTML = 'The Game has Begun!';
     console.log('The Game has begun');
 
-    // Select random word from word Array
-    var guessWord = randomPicker(words);
+    // Resets the game
+    resetGame();
     console.log('The randomword has been selected: ' + guessWord);
 
     // Display to user the number of letters of the guess word and the guess text
     var messageText = 'Guess the ' + guessWord.length + ' letter word';
     console.log(messageText);
     document.getElementById('messageDisplayText').innerHTML = messageText;
-
 
     console.log('Please key in your guess');
 
@@ -115,7 +130,7 @@ document.onkeyup = function wordGuessGame() {
 
             // Update the char guesses display for user
             lettersAlreadyGuessed.push(pressedKey);
-            console.log('lettersAlreadyGuessed: '+ lettersAlreadyGuessed);
+            console.log('lettersAlreadyGuessed: ' + lettersAlreadyGuessed);
             document.getElementById('lettersGuessed').innerHTML = lettersAlreadyGuessed;
 
 
@@ -125,7 +140,7 @@ document.onkeyup = function wordGuessGame() {
 
             console.log('Result of wordCharSearcher: ' + foundIndexes);
 
-          
+
             // If there were results found and they are not within the currently revealed
             if (foundIndexes.length > 0) {
                 console.log('You have found ' + foundIndexes.length + ' letter/s in the word!');
@@ -141,6 +156,9 @@ document.onkeyup = function wordGuessGame() {
                     console.log('Congratulations! You uncovered the word! 1 point for you!')
                     wins++;
                     document.getElementById('winsText').innerHTML = wins;
+
+                    // Reset Game
+                    resetGame();
                 }
 
 
@@ -154,9 +172,12 @@ document.onkeyup = function wordGuessGame() {
                 // Add code to check if guesses remaining are at 0
                 if (guessChances === 0) {
                     console.log('Guesses are at 0! You have lost!');
+                    document.getElementById('messageDisplayText').innerHTML = 'Resetting';
+
+                    // Reset Game
+                    resetGame();
                 }
             }
         }
     }
 }
-
