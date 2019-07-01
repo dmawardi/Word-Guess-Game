@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html lang="en-us">
-    <head>
-        <meta charset="utf-8">
-        <title>Word Guess Game</title>
 
-        
-
-        <!-- Reset CSS File -->
-        <link rel="stylesheet" href="./assets/css/reset.css" type="text/css">
-        
-        <!-- Link external stylesheet -->
-        <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
-
-    </head>
-
-    <body>
-        <section>
-            <p><span id="messageDisplayText">Press any key to get started!</span></p>
-
-            <p>Wins: <span id="winsText">0</span></p>
-            
-            <p>Current Word: <span id="currentWord">______</span></p>
-            <p>Number of Guesses Remaining: <span id="guessesRemaining">0</span></p>
-
-            <p>Letters Already Guessed: <span id="lettersGuessed">0</span></p>
-        </section>
+<head>
+    <meta charset="utf-8">
+    <title>Word Guess Game</title>
 
 
-        <!-- Link external Javascript -->
-        <script src="./assets/javascript/game.js"></script>
-    </body>
+
+    <!-- Reset CSS File -->
+    <link rel="stylesheet" href="./assets/css/reset.css" type="text/css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Link external stylesheet -->
+    <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
+
+</head>
+
+<body>
+    <section>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4"><span id="messageDisplayText">Press any key to get started!</span></h1>
+                <p class="lead">Current Word: <span id="currentWord">______</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Wins: <span id="winsText">0</span></li>
+                <li class="list-group-item">Number of Guesses Remaining: <span id="guessesRemaining">0</span></li>
+                <li class="list-group-item">Letters Already Guessed: <span id="lettersGuessed">0</span></li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- Link external Javascript -->
+    <script src="./assets/javascript/game.js"></script>
+</body>
 
 </html>
