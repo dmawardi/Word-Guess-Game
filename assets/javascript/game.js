@@ -7,7 +7,9 @@
 // Declare variables
 
 // Initialize word selection array
-var words = ['hello', 'goodbye', 'test', 'another word'];
+var words = ['Pulp Fiction', 'The Shawshank Redemption', 'The Lion King', 'Titanic', 'The Big Lebowski', 'Before Sunrise', 'Jurassic Park', 'Toy Story', 'The Matrix', 'Schindlers List', 
+        'Fight Club', 'Friday', 'Clueless', 'Terminator 2', 'Goodfellas', 'LA Confidential', 'Saving Private Ryan', 'Scream', 'The Iron GIant', 'Hoop Dreams', 'Rushmore', 'Good Will Hunting',
+            'The Silence of the Lambs'];
 
 // Declare empty string
 var displayString = "";
@@ -127,7 +129,7 @@ function revealFoundLetters(guessword, revealedLetters) {
         } else {
             displayString = displayString + '_ ';
         }
-        
+
     }
     console.log(displayString);
     return displayString;
@@ -168,7 +170,7 @@ document.onkeyup = function wordGuessGame() {
     resetGame();
     console.log('The randomword has been selected: ' + guessWord);
 
-    
+
 
     console.log('Please key in your guess');
 
@@ -177,9 +179,9 @@ document.onkeyup = function wordGuessGame() {
     //     
 
     // Given a key press from the user
-    document.onkeyup = function(event){
+    document.onkeyup = function (event) {
         // Take the character guess and process success/failure and whether guesses remain
         takeCharacterGuess(event.key);
     }
 
-    }
+}
