@@ -23,11 +23,13 @@
 </head>
 
 <body>
+    <!-- Jumbotron for displaying main message HUD for user -->
     <div class="container">
         <section>
             <div class="jumbotron">
                 <div class="container">
                     <h1 class="display-4">
+                        <!-- Main message display for user -->
                         <p><span id="messageDisplayText">Press any key to get started!</span></p>
                     </h1>
                     <p>Current Word: </p>
@@ -36,8 +38,11 @@
                 </div>
             </div>
 
+            <!-- Container for game statistics -->
             <div class="container">
                 <div class="row">
+
+                    <!-- First column: Displays wins and losses -->
                     <div class="col-4">
                         <div class="card">
                             <ul class="list-group list-group-flush">
@@ -52,23 +57,29 @@
 
                     </div>
 
-
+                    <!-- Column 2, displays number of guesses remaining -->
                     <div class="col-4">
                         <div class="card">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
                                     <p>Number of Guesses Remaining: <span id="guessesRemaining">0</span></p>
                                 </li>
-                                <li class="list-group-item">
-                                    <p>Letters Already Guessed: <span id="lettersGuessed">0</p></span>
-                                </li>
                             </ul>
                         </div>
 
                     </div>
 
-
-
+                    <!-- Column 3, displays guessed letters -->
+                    <div class="col-4">
+                            <div class="card">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <p>Letters Already Guessed: <span id="lettersGuessed">None</p></span>
+                                    </li>
+                                </ul>
+                            </div>
+    
+                        </div>
 
                 </div>
             </div>

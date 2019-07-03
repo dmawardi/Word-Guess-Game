@@ -28,14 +28,17 @@ function takeCharacterGuess(pressedKey) {
 
     // If it's determined the key has already been pressed and added to the list, tell user to repeat; else continue
     if (lettersAlreadyGuessed.includes(pressedKey)) {
-        console.log('Sorry, you have already entered that!');
+        document.getElementById('messageDisplayText').innerHTML = 'Sorry, you have already entered that!';
 
     } else {
 
         // Update the char guesses display for user
-        lettersAlreadyGuessed.push(pressedKey.toUpperCase());
+        lettersAlreadyGuessed.push(pressedKey);
         console.log('lettersAlreadyGuessed: ' + lettersAlreadyGuessed);
-        document.getElementById('lettersGuessed').innerHTML = lettersAlreadyGuessed;
+        document.getElementById('lettersGuessed').innerHTML = lettersAlreadyGuessed.forEach(function(element) {
+            console.log(element);
+            element.toUpperCase();
+        });;
 
 
 
@@ -65,7 +68,7 @@ function takeCharacterGuess(pressedKey) {
                 
             }
 
-
+            // If no results are found
         } else {
             console.log('Sorry. Try again!');
 
