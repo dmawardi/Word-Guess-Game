@@ -7,9 +7,10 @@
 // Declare variables
 
 // Initialize word selection array
-var words = ['Pulp Fiction', 'The Shawshank Redemption', 'The Lion King', 'Titanic', 'The Big Lebowski', 'Before Sunrise', 'Jurassic Park', 'Toy Story', 'The Matrix', 'Schindlers List', 
-        'Fight Club', 'Friday', 'Clueless', 'Terminator 2', 'Goodfellas', 'LA Confidential', 'Saving Private Ryan', 'Scream', 'The Iron GIant', 'Hoop Dreams', 'Rushmore', 'Good Will Hunting',
-            'The Silence of the Lambs'];
+var words = ['Pulp Fiction', 'The Shawshank Redemption', 'The Lion King', 'Titanic', 'The Big Lebowski', 'Before Sunrise', 'Jurassic Park', 'Toy Story', 'The Matrix', 'Schindlers List',
+    'Fight Club', 'Friday', 'Clueless', 'Terminator 2', 'Goodfellas', 'LA Confidential', 'Saving Private Ryan', 'Scream', 'The Iron GIant', 'Hoop Dreams', 'Rushmore', 'Good Will Hunting',
+    'The Silence of the Lambs'
+];
 
 // Declare empty string
 var displayString = "";
@@ -34,7 +35,7 @@ function takeCharacterGuess(pressedKey) {
         // Update the char guesses display for user
         lettersAlreadyGuessed.push(pressedKey);
         document.getElementById('lettersGuessed').innerHTML = lettersAlreadyGuessed;
-        
+
 
 
 
@@ -58,10 +59,10 @@ function takeCharacterGuess(pressedKey) {
                 document.getElementById('winsText').innerHTML = wins;
 
                 // Reset Game after 3 seconds
-                setTimeout(function(){
+                setTimeout(function () {
                     resetGame();
                 }, 4000);
-                
+
             }
 
             // If no results are found
@@ -81,7 +82,7 @@ function takeCharacterGuess(pressedKey) {
                 document.getElementById('loseText').innerHTML = loses;
 
                 // Reset Game after 3 seconds
-                setTimeout(function(){
+                setTimeout(function () {
                     resetGame();
                 }, 3000);
             }
@@ -166,25 +167,37 @@ function resetGame() {
 // END OF FUNCTION LIST
 // 
 
-// Game
-// Player touches a key to start the game
-document.onkeyup = function wordGuessGame() {
-    // Display to user that the game has begun
-    document.getElementById('messageDisplayText').innerHTML = 'The Game has Begun! Press a letter key guess on the keyboard!';
 
-    // Resets the game
-    resetGame();
+// Page Loads
+window.onload = function () {
+
+
+    // alert("It's loaded!")
 
 
 
-    // 
-    //  Waiting on user
-    //     
 
-    // Given a key press from the user
-    document.onkeyup = function (event) {
-        // Take the character guess and process success/failure and whether guesses remain
-        takeCharacterGuess(event.key);
+
+    // Game
+    // Player touches a key to start the game
+    document.onkeyup = function wordGuessGame() {
+        // Display to user that the game has begun
+        document.getElementById('messageDisplayText').innerHTML = 'The Game has Begun! Press a letter key guess on the keyboard!';
+
+        // Resets the game
+        resetGame();
+
+
+
+        // 
+        //  Waiting on user
+        //     
+
+        // Given a key press from the user
+        document.onkeyup = function (event) {
+            // Take the character guess and process success/failure and whether guesses remain
+            takeCharacterGuess(event.key);
+        }
+
     }
-
 }
