@@ -35,10 +35,8 @@ function takeCharacterGuess(pressedKey) {
         // Update the char guesses display for user
         lettersAlreadyGuessed.push(pressedKey);
         console.log('lettersAlreadyGuessed: ' + lettersAlreadyGuessed);
-        document.getElementById('lettersGuessed').innerHTML = lettersAlreadyGuessed.forEach(function(element) {
-            console.log(element);
-            element.toUpperCase();
-        });;
+        document.getElementById('lettersGuessed').innerHTML = lettersAlreadyGuessed;
+        
 
 
 

@@ -12,6 +12,7 @@ body {
 
 .card {
     margin: 0 auto;
+    height: 100%;
 }
 
 #currentWord {
@@ -24,4 +25,8 @@ body {
     background-image: url('../images/Word\ Guess\ bg.png');
     background-size: cover;
     font-weight: bold;
+}
+
+.messageDisplayText {
+    padding: 5px 5px;
 }
