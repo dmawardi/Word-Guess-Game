@@ -13,8 +13,8 @@ var words = ['Pulp Fiction', 'The Shawshank Redemption', 'The Lion King', 'Titan
 
 // Declare empty string
 var displayString = "";
-
 var wins = 0;
+var loses = 0;
 var guessWord = "";
 
 
@@ -33,7 +33,7 @@ function takeCharacterGuess(pressedKey) {
     } else {
 
         // Update the char guesses display for user
-        lettersAlreadyGuessed.push(pressedKey);
+        lettersAlreadyGuessed.push(pressedKey.toUpperCase());
         console.log('lettersAlreadyGuessed: ' + lettersAlreadyGuessed);
         document.getElementById('lettersGuessed').innerHTML = lettersAlreadyGuessed;
 
@@ -42,27 +42,27 @@ function takeCharacterGuess(pressedKey) {
         // Search guess word for user pressed letter and output
         var foundIndexes = wordCharSearcher(guessWord, pressedKey);
 
-        console.log('Result of character search within word, found at index: ' + foundIndexes);
-
-
         // If there were results found and they are not within the currently revealed
         if (foundIndexes.length > 0) {
-            console.log('You have found ' + foundIndexes.length + ' letter/s in the word!');
-
             // Reveal found letters based off typed list to user
             var displayedWord = revealFoundLetters(guessWord, lettersAlreadyGuessed);
-            console.log(displayedWord);
-            document.getElementById('currentWord').innerHTML = displayedWord;
+            document.getElementById('currentWord').textContent = displayedWord;
 
 
             // Add code for checking if all letters are found for a win
             if (guessWord === displayedWord) {
-                console.log('Congratulations! You uncovered the word! 1 point for you!')
+                console.log('Congratulations! You uncovered the word! 1 point for you!');
+
+                // Display win text, increment wins and display
+                document.getElementById('messageDisplayText').innerHTML = 'You won! Prepare for the next word!';
                 wins++;
                 document.getElementById('winsText').innerHTML = wins;
 
-                // Reset Game
-                resetGame();
+                // Reset Game after 3 seconds
+                setTimeout(function(){
+                    resetGame();
+                }, 3000);
+                
             }
 
 
@@ -76,10 +76,16 @@ function takeCharacterGuess(pressedKey) {
             // Add code to check if guesses remaining are at 0
             if (guessChances === 0) {
                 console.log('Guesses are at 0! You have lost!');
-                document.getElementById('messageDisplayText').innerHTML = 'Resetting';
 
-                // Reset Game
-                resetGame();
+                // Display lose text, increment loses and display
+                document.getElementById('messageDisplayText').innerHTML = 'You have lost! Next word incoming!';
+                loses++;
+                document.getElementById('loseText').innerHTML = loses;
+
+                // Reset Game after 3 seconds
+                setTimeout(function(){
+                    resetGame();
+                }, 3000);
             }
         }
     }
@@ -93,6 +99,9 @@ function randomPicker(wordArray) {
 
     return word;
 }
+
+// A function taken from Stack Overflow that takes input of milliseconds and pauses the code
+
 
 // Function that searches input word for the input character
 // Returns array of integer indices of matching letters
@@ -122,12 +131,16 @@ function revealFoundLetters(guessword, revealedLetters) {
     // Iterates through boolean array (revealedLetters) 
     for (var i = 0; i < guessword.length; i++) {
 
+        // Append string if string found
+        if (guessWord[i] === ' ') {
+            displayString = displayString + ' ';
+        }
         // Append guessword letter to display string if the letter is included
-        if (revealedLetters.includes(guessword[i])) {
+        else if (revealedLetters.includes(guessword[i].toLowerCase())) {
             displayString = displayString + guessword[i];
             // else, add an underscore
         } else {
-            displayString = displayString + '_ ';
+            displayString = displayString + '_';
         }
 
     }

@@ -1,0 +1,28 @@
+body {
+    font-family: 'Bevan', cursive;
+    font-family: 'DM Serif Text', serif;
+    font-family: 'Noto Serif', serif;
+    background-image: url('../images/90s-Wallpaper.jpg');
+    background-repeat: repeat;
+}
+
+.container {
+    width: 80%;
+    text-align: center;
+}
+
+.card {
+    margin: 0 auto;
+}
+
+#currentWord {
+    font-stretch: expanded;
+    font-size: 200%;
+    letter-spacing: 5px;
+}
+
+.jumbotron {
+    background-image: url('../images/Word\ Guess\ bg.png');
+    background-size: cover;
+    font-weight: bold;
+}
