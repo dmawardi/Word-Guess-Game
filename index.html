@@ -15,7 +15,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Bevan|DM+Serif+Text|Noto+Serif&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Cherry+Cream+Soda&display=swap" rel="stylesheet">
 
     <!-- Link external stylesheet -->
     <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
@@ -25,22 +25,52 @@
 <body>
     <div class="container">
         <section>
-            <div class="jumbotron jumbotron-fluid">
+            <div class="jumbotron">
                 <div class="container">
-                    <h1 class="display-4"><span id="messageDisplayText">Press any key to get started!</span></h1>
+                    <h1 class="display-4">
+                        <p><span id="messageDisplayText">Press any key to get started!</span></p>
+                    </h1>
                     <p>Current Word: </p>
                     <p class="lead"><span id="currentWord">______</span>
                     </p>
                 </div>
             </div>
 
-            <div class="card" style="width: 18rem;">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Wins: <span id="winsText">0</span></li>
-                    <li class="list-group-item">Loses: <span id="loseText">0</span></li>
-                    <li class="list-group-item">Number of Guesses Remaining: <span id="guessesRemaining">0</span></li>
-                    <li class="list-group-item">Letters Already Guessed: <span id="lettersGuessed">0</span></li>
-                </ul>
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <p>Wins: <span id="winsText">0</span></p>
+                                </li>
+                                <li class="list-group-item">
+                                    <p>Loses: <span id="loseText">0</span></p>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-4">
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <p>Number of Guesses Remaining: <span id="guessesRemaining">0</span></p>
+                                </li>
+                                <li class="list-group-item">
+                                    <p>Letters Already Guessed: <span id="lettersGuessed">0</p></span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
             </div>
         </section>
     </div>
