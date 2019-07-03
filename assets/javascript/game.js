@@ -146,7 +146,7 @@ function revealFoundLetters(guessword, revealedLetters) {
 // Resets the game without removing wins: Resets all variables and user text
 function resetGame() {
     // Reset guesses & display
-    guessChances = 5;
+    guessChances = 12;
     document.getElementById('guessesRemaining').innerHTML = guessChances;
 
     // Resets word and letters guessed and displays to users
