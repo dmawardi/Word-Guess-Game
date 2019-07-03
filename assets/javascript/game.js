@@ -16,6 +16,7 @@ var displayString = "";
 var wins = 0;
 var loses = 0;
 var guessWord = "";
+var winAudio = new Audio('./assets/audio/Gracie Films Logo HD.mp3');
 
 
 
@@ -23,8 +24,6 @@ var guessWord = "";
 // Takes input character key and determines if it's successful or not
 // Also, checks if 
 function takeCharacterGuess(pressedKey) {
-
-    console.log('Key pressed: ' + pressedKey);
 
     // If it's determined the key has already been pressed and added to the list, tell user to repeat; else continue
     if (lettersAlreadyGuessed.includes(pressedKey)) {
@@ -34,7 +33,6 @@ function takeCharacterGuess(pressedKey) {
 
         // Update the char guesses display for user
         lettersAlreadyGuessed.push(pressedKey);
-        console.log('lettersAlreadyGuessed: ' + lettersAlreadyGuessed);
         document.getElementById('lettersGuessed').innerHTML = lettersAlreadyGuessed;
         
 
@@ -52,7 +50,7 @@ function takeCharacterGuess(pressedKey) {
 
             // Add code for checking if all letters are found for a win
             if (guessWord === displayedWord) {
-                console.log('Congratulations! You uncovered the word! 1 point for you!');
+                winAudio.play();
 
                 // Display win text, increment wins and display
                 document.getElementById('messageDisplayText').innerHTML = 'You won! Prepare for the next word!';
@@ -62,13 +60,13 @@ function takeCharacterGuess(pressedKey) {
                 // Reset Game after 3 seconds
                 setTimeout(function(){
                     resetGame();
-                }, 3000);
+                }, 4000);
                 
             }
 
             // If no results are found
         } else {
-            console.log('Sorry. Try again!');
+            document.getElementById('messageDisplayText').innerHTML = 'Wrong! Guesses - 1'
 
             // Reduce guess chances and print to document
             guessChances--;
@@ -76,7 +74,6 @@ function takeCharacterGuess(pressedKey) {
 
             // Add code to check if guesses remaining are at 0
             if (guessChances === 0) {
-                console.log('Guesses are at 0! You have lost!');
 
                 // Display lose text, increment loses and display
                 document.getElementById('messageDisplayText').innerHTML = 'You have lost! Next word incoming!';
@@ -109,8 +106,6 @@ function randomPicker(wordArray) {
 function wordCharSearcher(word, char) {
     // Declare variables
     var listOfFoundIndices = [];
-
-    console.log('Word: ' + word + '. word.length: ' + word.length);
 
     // Iterate through word
     for (var i = 0; i < word.length; i++) {
@@ -145,7 +140,6 @@ function revealFoundLetters(guessword, revealedLetters) {
         }
 
     }
-    console.log(displayString);
     return displayString;
 }
 
@@ -154,7 +148,6 @@ function resetGame() {
     // Reset guesses & display
     guessChances = 5;
     document.getElementById('guessesRemaining').innerHTML = guessChances;
-    console.log('Setting guesses to 5');
 
     // Resets word and letters guessed and displays to users
     guessWord = randomPicker(words);
@@ -166,7 +159,6 @@ function resetGame() {
 
     // Display to user the number of letters of the guess word and the guess text
     var messageText = 'Guess the ' + guessWord.length + ' letter word';
-    console.log(messageText);
     document.getElementById('messageDisplayText').innerHTML = messageText;
 
 }
@@ -178,15 +170,12 @@ function resetGame() {
 // Player touches a key to start the game
 document.onkeyup = function wordGuessGame() {
     // Display to user that the game has begun
-    document.getElementById('messageDisplayText').innerHTML = 'The Game has Begun!';
+    document.getElementById('messageDisplayText').innerHTML = 'The Game has Begun! Press a letter key guess on the keyboard!';
 
     // Resets the game
     resetGame();
-    console.log('The randomword has been selected: ' + guessWord);
 
 
-
-    console.log('Please key in your guess');
 
     // 
     //  Waiting on user
